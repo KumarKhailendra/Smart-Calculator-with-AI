@@ -6,6 +6,7 @@ export function rootMainContentLayout() {
     const mainContantElement = el('div', { class: "main-content"});
 
     renderCalculator(mainContantElement, calculators.standard, false);
+    renderCalculator(mainContantElement, calculators.scientific);
 
     return mainContantElement;
 }

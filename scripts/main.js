@@ -10,6 +10,7 @@ const metaData = {
     stylessheets: [
         "../css/style.css",
         "../css/standard.css",
+        "../css/scientific.css",
     ],
     scripts: [
         "https://cdn.jsdelivr.net/npm/chart.js",
