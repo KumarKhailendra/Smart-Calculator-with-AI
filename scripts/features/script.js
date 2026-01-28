@@ -14,7 +14,7 @@ class Calculator {
     }
 
     delete() {
-        if (this.currentOperand === '0' || this.currentOperand.length === 1) {
+        if (this.currentOperand.length === 1 || this.currentOperand === '0') {
             this.currentOperand = '0';
             return;
         }
@@ -28,7 +28,7 @@ class Calculator {
         }
         if (number === '.' && this.currentOperand.includes('.')) return;
         if (this.currentOperand === '0' && number !== '.') {
-            this.currentOperand = number;
+            this.currentOperand = number.toString();
         } else {
             this.currentOperand = this.currentOperand.toString() + number.toString();
         }
@@ -52,7 +52,7 @@ class Calculator {
         const prev = parseFloat(this.previousOperand);
         const current = parseFloat(this.currentOperand);
         if (isNaN(prev) || isNaN(current)) return;
-        
+
         const expression = `${this.getDisplayNumber(this.previousOperand)} ${this.operation} ${this.getDisplayNumber(current)}`;
 
         switch (this.operation) {
@@ -68,29 +68,14 @@ class Calculator {
             case '÷':
                 computation = prev / current;
                 break;
-            case '^':
-                computation = Math.pow(prev, current);
-                break;
             default:
                 return;
         }
-        this.currentOperand = computation;
-        if (this.historyManager) this.historyManager.add(expression, this.currentOperand);
+        this.currentOperand = computation.toString();
         this.operation = undefined;
         this.previousOperand = '';
         this.computationFinished = true;
     }
-
-    updateDisplay() {
-        this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
-        if (this.operation != null) {
-            this.previousOperandTextElement.innerText = 
-                `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`;
-        } else {
-            this.previousOperandTextElement.innerText = '';
-        }
-    }
-
     getDisplayNumber(number) {
         const stringNumber = number.toString();
         const integerDigits = parseFloat(stringNumber.split('.')[0]);
@@ -107,30 +92,37 @@ class Calculator {
             return integerDisplay;
         }
     }
+    updateDisplay() {
+        this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
+        if (this.operation != null) {
+            this.previousOperandTextElement.innerText =
+                `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`;
+        } else {
+            this.previousOperandTextElement.innerText = '';
+        }
+    }
 }
 
-// ---------------------------- standard-calculator ----------------------------------------
-
+// -------------------------------- Standard Calculator Setup --------------------------------
 const calculatorElement = document.getElementById('standard-calculator');
-if (!calculatorElement) return;
+// if (!calculatorElement) return;
 const previousOperandTextElement = calculatorElement.querySelector('[data-previous-operand]');
 const currentOperandTextElement = calculatorElement.querySelector('[data-current-operand]');
 
-const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement)
+const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement);
 
 const numberButtons = calculatorElement.querySelectorAll('[data-number]');
 const operationButtons = calculatorElement.querySelectorAll('[data-operation]');
-const equalsButtons = calculatorElement.querySelectorAll('[data-equals]');
-const deleteButtons = calculatorElement.querySelectorAll('[data-delete]');
-const allClearButtons = calculatorElement.querySelectorAll('[data-all-clear]');
+const equalsButton = calculatorElement.querySelector('[data-equals]');
+const deleteButton = calculatorElement.querySelector('[data-delete]');
+const allClearButton = calculatorElement.querySelector('[data-all-clear]');
 
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
         calculator.appendNumber(button.innerText);
         calculator.updateDisplay();
     })
-});
-
+})
 
 operationButtons.forEach(button => {
     button.addEventListener('click', () => {
@@ -139,39 +131,43 @@ operationButtons.forEach(button => {
     })
 });
 
-if (equalsButtons) equalsButtons.addEventListener('click', () => {
-    calculator.compute();
-    calculator.updateDisplay();
-});
+if (equalsButton) {
+    equalsButton.addEventListener('click', () => {
+        calculator.compute();
+        calculator.updateDisplay();
+    });
+}
 
-if (deleteButtons) deleteButtons.addEventListener('click', () => {
-    calculator.delete();
-    calculator.updateDisplay();
-});
+if (deleteButton) {
+    deleteButton.addEventListener('click', () => {
+        calculator.delete();
+        calculator.updateDisplay();
+    });
+}
 
-if (allClearButtons) allClearButtons.addEventListener('click', () => {
-    calculator.clear();
-    calculator.updateDisplay();
-});
+if (allClearButton) {
+    allClearButton.addEventListener('click', () => {
+        calculator.clear();
+        calculator.updateDisplay();
+    });
+}
 
 
-// --------------------------------------------------------------------
+// -------------------------------- End of Standard Calculator Setup --------------------------------
 
 const navLinks = document.querySelectorAll('.sidebar li[data-nav-target]');
 const allSidebarLinks = document.querySelectorAll('.sidebar li');
 const calculatorContainers = document.querySelectorAll('.calculator');
-const historyPanel = document.querySelector('.history-panel');
-const historyToggleButton = document.querySelector('[data-action="toggle-history"]');
-
 
 navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
-        
-        allSidebarLinks.forEach(nav => nav.classList.remove('active'));
+
+        allSidebarLinks.forEach(item => item.classList.remove('active'));
         link.classList.add('active');
-        
+
         const targetId = link.dataset.navTarget;
+
         calculatorContainers.forEach(container => {
             if (container.id === targetId) {
                 container.classList.remove('hidden');
@@ -182,11 +178,7 @@ navLinks.forEach(link => {
     });
 });
 
-historyToggleButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    historyPanel.classList.toggle('hidden');
-});
-
+// Theme Switcher
 const themeSwitcher = document.getElementById('theme-switcher');
 themeSwitcher.addEventListener('change', () => {
     document.body.classList.toggle('dark-mode');
