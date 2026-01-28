@@ -15,5 +15,14 @@ const el = (tag, attrs = {}, children = []) => {
     return element;
 }
 
+const createDisplay = () => el('div', { class: "display" }, [
+    el('div', { class: "previous-operand", "data-previous-operand": ""}),
+    el('div', { class: "current-operand", "data-current-operand": "", text: "0"})
+]);
 
-export { el };
+const createButtons = (buttons) => el('div', { class: "buttons" }, 
+    buttons.map(btn => el("button", btn.attrs, [btn.label]))
+);
+
+
+export { el, createDisplay, createButtons };

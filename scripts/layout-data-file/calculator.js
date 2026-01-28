@@ -1,0 +1,27 @@
+export const calculators = {
+    standard: {
+    id: "standard-calculator",
+    type: "calculator",
+    display: true,
+    buttons: [
+      { label: "AC", attrs: { "data-all-clear": "", class: "span-two" } },
+      { label: "DEL", attrs: { "data-delete": "" } },
+      { label: "÷", attrs: { "data-operation": "" } },
+      { label: "1", attrs: { "data-number": "" } },
+      { label: "2", attrs: { "data-number": "" } },
+      { label: "3", attrs: { "data-number": "" } },
+      { label: "×", attrs: { "data-operation": "" } },
+      { label: "4", attrs: { "data-number": "" } },
+      { label: "5", attrs: { "data-number": "" } },
+      { label: "6", attrs: { "data-number": "" } },
+      { label: "+", attrs: { "data-operation": "" } },
+      { label: "7", attrs: { "data-number": "" } },
+      { label: "8", attrs: { "data-number": "" } },
+      { label: "9", attrs: { "data-number": "" } },
+      { label: "−", attrs: { "data-operation": "" } },
+      { label: ".", attrs: { "data-number": "" } },
+      { label: "0", attrs: { "data-number": "" } },
+      { label: "=", attrs: { "data-equals": "", class: "span-two" } },
+    ],
+  },
+}

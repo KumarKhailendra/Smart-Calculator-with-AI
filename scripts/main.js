@@ -8,7 +8,8 @@ const metaData = {
     icon32: "https://img.freepik.com/premium-vector/cute-dark-gray-calculator-with-blue-screen-round-buttons-flat-cartoon-style_653461-4845.jpg?semt=ais_hybrid&w=740&q=80",
     icon16: "https://img.freepik.com/premium-vector/cute-dark-gray-calculator-with-blue-screen-round-buttons-flat-cartoon-style_653461-4845.jpg?semt=ais_hybrid&w=740&q=80",
     stylessheets: [
-        "../css/style.css"
+        "../css/style.css",
+        "../css/standard.css",
     ],
     scripts: [
         "https://cdn.jsdelivr.net/npm/chart.js",
@@ -17,7 +18,7 @@ const metaData = {
         "https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"
     ],
     bodyScripts: [
-
+        "./scripts/features/script.js"
     ]
 }
 
