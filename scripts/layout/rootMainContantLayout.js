@@ -7,6 +7,7 @@ export function rootMainContentLayout() {
 
     renderCalculator(mainContantElement, calculators.standard, false);
     renderCalculator(mainContantElement, calculators.scientific);
+    renderCalculator(mainContantElement, calculators.graphing);
 
     return mainContantElement;
 }

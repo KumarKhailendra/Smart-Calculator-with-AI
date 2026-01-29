@@ -1,4 +1,4 @@
-import { el, createDisplay, createButtons } from "./helper.js";
+import { el, createDisplay, createButtons, inputField } from "./helper.js";
 
 export function renderCalculator(root, config, hidden = true) {
     const container = el("div", { class: `calculator ${ hidden ? 'hidden': '' }`, id: config.id });
@@ -7,6 +7,16 @@ export function renderCalculator(root, config, hidden = true) {
 
     if(config.buttons) container.appendChild(createButtons(config.buttons))
 
+    if (config.inputs && !config.canvas) 
+        config.inputs.forEach(input => container.appendChild(inputField(input.label, input)));
+
+    if (config.inputs && config.canvas) {
+        const graphContainer = el('div', { class: 'graph-container'}, [
+            ...config.inputs.map(i => inputField(i.label, i)),
+            el("canvas", config.canvas)
+        ]);
+        container.appendChild(graphContainer)
+    }
 
     return root.appendChild(container)
 }

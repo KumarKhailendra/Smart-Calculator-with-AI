@@ -72,5 +72,20 @@ export const calculators = {
       { label: "=", attrs: { "data-equals": ""} },
       { label: "+", attrs: { "data-operation": "" } },
     ],
+  },
+
+  graphing: {
+    id: "graphing-calculator",
+    type: "graphing",
+    inputs: [
+      {
+        id: "equation-input",
+        placeholder: "Enter equation (e.g., y = 2x + 3)",
+        value: "y = x^2 + 3*x + 2",
+      },
+    ],
+    canvas: {
+      id: "graph-canvas",
+    }
   }
 }

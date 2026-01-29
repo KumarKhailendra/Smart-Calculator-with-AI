@@ -24,5 +24,11 @@ const createButtons = (buttons) => el('div', { class: "buttons" },
     buttons.map(btn => el("button", btn.attrs, [btn.label]))
 );
 
+const inputField = (label, config, className) =>
+    el('div', { class: className??"form-group" }, [
+        el('label', { for: config.id, text: label }),
+        el('input', { ...config })
+    ]);
 
-export { el, createDisplay, createButtons };
+
+export { el, createDisplay, createButtons, inputField };
