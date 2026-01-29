@@ -1,3 +1,4 @@
+import { graphCanvas } from "./features/graph.js";
 import { setMetaData } from "./layout/headMetaData.js";
 import { rootLayout } from "./layout/rootLayout.js";
 
@@ -26,6 +27,7 @@ const metaData = {
 
 window.addEventListener('DOMContentLoaded', () => {
     setMetaData(metaData)
+    graphCanvas()
 })
 
 // ------------------------------------ Start Root Layout ----------------------------------------
