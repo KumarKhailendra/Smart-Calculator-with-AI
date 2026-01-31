@@ -1,3 +1,4 @@
+import { unitConverter } from "./features/converter.js";
 import { graphCanvas } from "./features/graph.js";
 import { setMetaData } from "./layout/headMetaData.js";
 import { rootLayout } from "./layout/rootLayout.js";
@@ -13,6 +14,7 @@ const metaData = {
         "../css/standard.css",
         "../css/scientific.css",
         "../css/graphing.css",
+        "../css/converter.css",
     ],
     scripts: [
         "https://cdn.jsdelivr.net/npm/chart.js",
@@ -28,6 +30,7 @@ const metaData = {
 window.addEventListener('DOMContentLoaded', () => {
     setMetaData(metaData)
     graphCanvas()
+    unitConverter()
 })
 
 // ------------------------------------ Start Root Layout ----------------------------------------

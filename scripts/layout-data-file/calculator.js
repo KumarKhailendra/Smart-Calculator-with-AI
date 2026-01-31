@@ -87,5 +87,20 @@ export const calculators = {
     canvas: {
       id: "graph-canvas",
     }
+  },
+
+  converter: {
+    id: "converter-calculator",
+    type: "converter",
+    inputs: [
+      {
+        id: "converter-input",
+        label: "Value to Convert",
+        placeholder: "e.g., Convert 10 meters to feet",
+      }
+    ],
+    resultBox: {
+      id: "converter-result",
+    }
   }
 }

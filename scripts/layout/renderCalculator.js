@@ -18,5 +18,7 @@ export function renderCalculator(root, config, hidden = true) {
         container.appendChild(graphContainer)
     }
 
+    if (config.resultBox) container.appendChild(el("div", { class: config.resultBox.id, id: config.resultBox.id, text: config.resultBox.defaultText }))
+
     return root.appendChild(container)
 }
