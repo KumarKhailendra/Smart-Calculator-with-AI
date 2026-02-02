@@ -30,5 +30,22 @@ const inputField = (label, config, className) =>
         el('input', { ...config })
     ]);
 
+const createTabes = (tabs, tabClass) => 
+    el('nav', { class: tabClass??"financial-tabs" }, 
+        tabs.map((tab, i) => 
+            el("button", { class: "tab-link" + (i === 0 ? " active" : ""), "data-tab-target": tab.id }, [tab.label])
+    )
+    );
 
-export { el, createDisplay, createButtons, inputField };
+const radioGroup = (label, name, options, checked) => 
+    el('div', { class: "form-group" }, [
+        el('label', { text: label }),
+        el('div', { class: 'radio-group' },
+            options.map(option => el('label', {}, [
+                el('input', { type: 'radio', name, value: option, checked: option == checked }),
+                ` ${option}`
+            ]))
+        )
+    ])
+
+export { el, createDisplay, createButtons, inputField, createTabes, radioGroup };
