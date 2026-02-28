@@ -1,6 +1,7 @@
 import { unitConverter } from "./features/converter.js";
 import { financialCalc } from "./features/financial.js";
 import { graphCanvas } from "./features/graph.js";
+import { programmingCalc } from "./features/programming.js";
 import { setMetaData } from "./layout/headMetaData.js";
 import { rootLayout } from "./layout/rootLayout.js";
 
@@ -35,6 +36,7 @@ window.addEventListener('DOMContentLoaded', () => {
     graphCanvas()
     unitConverter()
     financialCalc()
+    programmingCalc()
 })
 
 // ------------------------------------ Start Root Layout ----------------------------------------
