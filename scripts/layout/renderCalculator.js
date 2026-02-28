@@ -1,7 +1,14 @@
 import { el, createDisplay, createButtons, inputField, createTabes, radioGroup } from "./helper.js";
 
 export function renderCalculator(root, config, hidden = true) {
-    const container = el("div", { class: `calculator ${ hidden ? 'hidden': '' }`, id: config.id });
+    const mainContainer = el("div", { class: `calculator ${ hidden ? 'hidden': '' }`, id: config.id });
+
+    let container = mainContainer;
+
+    if (config.wrapper) {
+        container = el(config.wrapper.tag, { class: config.wrapper.class || '' }, []);
+        mainContainer.appendChild(container);
+    }
 
     if (config.display) container.appendChild(createDisplay())
 
@@ -24,7 +31,7 @@ export function renderCalculator(root, config, hidden = true) {
 
     if (config.contents) config.contents.forEach(content => container.appendChild(renderSection(content)));
 
-    return root.appendChild(container)
+    return root.appendChild(mainContainer)
 }
 
 function renderSection(config) {

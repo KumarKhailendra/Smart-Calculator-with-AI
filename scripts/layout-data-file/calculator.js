@@ -280,4 +280,96 @@ export const calculators = {
       },
     ],
   },
+  
+  programming: {
+    id: "programming-calculator",
+    type: "programming",
+    wrapper: {
+      tag: "div",
+      class: "programming-container",
+    },
+    tabClass: "programming-tabs",
+    tabs: [
+      { id: "base-converter", label: "Converter" },
+      { id: "bitwise-ops", label: "Bitwise" },
+    ],
+
+    contents: [
+      {
+        id: "base-converter",
+        className: "programming-content active",
+        inputs: [
+          {
+            perantClass: "converter-form-group",
+            label: "DEC",
+            id: "dec-input",
+            type: "text",
+            "data-base": "10",
+            placeholder: "Decimal",
+          },
+          {
+            perantClass: "converter-form-group",
+            label: "HEX",
+            id: "hex-input",
+            type: "text",
+            "data-base": "16",
+            placeholder: "Hexadecimal",
+          },
+          {
+            perantClass: "converter-form-group",
+            label: "OCT",
+            id: "oct-input",
+            type: "text",
+            "data-base": "8",
+            placeholder: "Octal",
+          },
+          {
+            perantClass: "converter-form-group",
+            label: "BIN",
+            id: "bin-input",
+            type: "text",
+            "data-base": "2",
+            placeholder: "Binary",
+          },
+        ],
+      },
+
+      {
+        id: "bitwise-ops",
+        className: "programming-content",
+        fields: [
+          {
+            type: "input",
+            id: "bitwise-op1",
+            inputType: "number",
+            placeholder: "Operand 1",
+          },
+          {
+            type: "select",
+            id: "bitwise-operator",
+            options: [
+              { value: "AND", label: "AND (&)" },
+              { value: "OR", label: "OR (|)" },
+              { value: "XOR", label: "XOR (^)" },
+              { value: "NOT", label: "NOT (~)" },
+              { value: "LSHIFT", label: "Left Shift (<<)" },
+              { value: "RSHIFT", label: "Right Shift (>>)" },
+            ],
+          },
+          {
+            type: "input",
+            id: "bitwise-op2",
+            inputType: "number",
+            placeholder: "Operand 2",
+          },
+        ],
+        button: {
+          id: "calculate-bitwise",
+          label: "Calculate",
+          class: "calc-button",
+        },
+        resultBox: { id: "bitwise-result" },
+      },
+    ],
+  },
 }

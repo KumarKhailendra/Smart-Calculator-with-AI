@@ -17,6 +17,7 @@ const metaData = {
         "../css/graphing.css",
         "../css/converter.css",
         "../css/financial.css",
+        "../css/programming.css",
     ],
     scripts: [
         "https://cdn.jsdelivr.net/npm/chart.js",
