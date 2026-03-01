@@ -2,6 +2,7 @@ import { aiSolver } from "./features/ai-solver.js";
 import { unitConverter } from "./features/converter.js";
 import { financialCalc } from "./features/financial.js";
 import { graphCanvas } from "./features/graph.js";
+import { HistoryManager } from "./features/history.js";
 import { programmingCalc } from "./features/programming.js";
 import { setMetaData } from "./layout/headMetaData.js";
 import { rootLayout } from "./layout/rootLayout.js";
@@ -20,6 +21,7 @@ const metaData = {
         "../css/converter.css",
         "../css/programming.css",
         "../css/financial.css",
+        "../css/history.css",
         "../css/ai-solver.css",
     ],
     scripts: [
@@ -35,6 +37,7 @@ const metaData = {
 
 window.addEventListener('DOMContentLoaded', () => {
     setMetaData(metaData)
+    window.historyManager = new HistoryManager();
     graphCanvas()
     unitConverter()
     financialCalc()

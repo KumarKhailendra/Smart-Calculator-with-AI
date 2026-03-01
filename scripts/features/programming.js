@@ -91,6 +91,7 @@ export function programmingCalc() {
                 default: return;
             }
             bitwiseResult.textContent = `Result: ${result.toString(2).toUpperCase()}`;
+            if (window.historyManager) window.historyManager.add(expression, result.toString(2).toUpperCase());
         });
     }
 

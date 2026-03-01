@@ -1,7 +1,8 @@
 class Calculator {
-  constructor(previousOperandTextElement, currentOperandTextElement) {
+  constructor(previousOperandTextElement, currentOperandTextElement, historyManager) {
     this.previousOperandTextElement = previousOperandTextElement;
     this.currentOperandTextElement = currentOperandTextElement;
+    this.historyManager = historyManager;
     this.computationFinished = false;
     this.clear();
   }
@@ -75,6 +76,7 @@ class Calculator {
         return;
     }
     this.currentOperand = computation.toString();
+    if (this.historyManager) this.historyManager.add(expression, this.currentOperand);
     this.operation = undefined;
     this.previousOperand = "";
     this.computationFinished = true;
@@ -93,6 +95,7 @@ class Calculator {
       default:
         return;
     }
+    if (this.historyManager) this.historyManager.add(expression, this.currentOperand);
     this.computationFinished = true;
   }
   chooseSiciOperation(sciOperation) {
@@ -127,6 +130,7 @@ class Calculator {
         return;
     }
     this.currentOperand = computation.toString();
+    if (this.historyManager) this.historyManager.add(expression, this.currentOperand);
     this.operation = undefined;
     this.previousOperand = "";
     this.computationFinished = true;
@@ -175,6 +179,7 @@ function setupCalculatorEventListeners(calculatorId) {
   const calculator = new Calculator(
     previousOperandTextElement,
     currentOperandTextElement,
+    window.historyManager
   );
 
   const numberButtons = calculatorElement.querySelectorAll("[data-number]");
@@ -246,6 +251,8 @@ setupCalculatorEventListeners("scientific-calculator");
 const navLinks = document.querySelectorAll(".sidebar li[data-nav-target]");
 const allSidebarLinks = document.querySelectorAll(".sidebar li");
 const calculatorContainers = document.querySelectorAll(".calculator");
+const historyPanel = document.querySelector('.history-panel');
+const historyToggleButton = document.querySelector('[data-action="toggle-history"]');
 
 navLinks.forEach((link) => {
   link.addEventListener("click", (e) => {
@@ -264,6 +271,11 @@ navLinks.forEach((link) => {
       }
     });
   });
+});
+
+historyToggleButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    historyPanel.classList.toggle('hidden');
 });
 
 // Theme Switcher

@@ -43,8 +43,9 @@ export function financialCalc() {
             const tenureMonths = tenureYears * 12;
 
             const emi = (principal * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, tenureMonths)) / (Math.pow(1 + monthlyInterestRate, tenureMonths) - 1);
-
-            emiResult.textContent = `Your EMI is: ₹${emi.toFixed(2)}`;
+            const resultString = `Your EMI is: ₹${emi.toFixed(2)}`;
+            emiResult.textContent = resultString;
+            if (window.historyManager) window.historyManager.add(expression, resultString);
         });
     }
 
@@ -70,10 +71,14 @@ export function financialCalc() {
             let finalAmount;
             if (calculationType === "add") {
                 finalAmount = amount + (amount * gstRate / 100);
-                gstResult.textContent = `Amount after adding GST: ₹${finalAmount.toFixed(2)}`;
+                const resultString = `Amount after adding GST: ₹${finalAmount.toFixed(2)}`;
+                gstResult.textContent = resultString;
+                if (this.historyManager) this.historyManager.add(expression, resultString);
             } else {
                 finalAmount = amount - (amount * gstRate / 100);
-                gstResult.textContent = `Amount after subtracting GST: ₹${finalAmount.toFixed(2)}`;
+                const resultString = `Amount after subtracting GST: ₹${finalAmount.toFixed(2)}`;
+                gstResult.textContent = resultString;
+                if (window.historyManager) window.historyManager.add(expression, resultString);
             }
         });
     }
@@ -101,7 +106,9 @@ export function financialCalc() {
             } else {
                 tax = (annualIncome - 1000000) * 0.3 + 112500;
             }
-            taxResult.textContent = `Your estimated income tax is: ₹${tax.toFixed(2)}`;
+            const resultString = `Your estimated income tax is: ₹${tax.toFixed(2)}`;
+            taxResult.textContent = resultString;
+            if (window.historyManager) window.historyManager.add(expression, resultString);
         });
     }
 
@@ -128,7 +135,9 @@ export function financialCalc() {
             const totalInvestment = monthlyInvestment * totalMonths;
             const gain = futureValue - totalInvestment;
             
-            sipResult.textContent = `Your SIP will grow to: ₹${futureValue.toFixed(2)} (Gain: ₹${gain.toFixed(2)})`;
+            const resultString = `Your SIP will grow to: ₹${futureValue.toFixed(2)} (Gain: ₹${gain.toFixed(2)})`;
+            sipResult.textContent = resultString;
+            if (window.historyManager) window.historyManager.add(expression, resultString);
         });
     }
 
@@ -186,7 +195,9 @@ export function financialCalc() {
                 return;
             }
             const convertedAmount = (amount / fromRate) * toRate;
-            currencyResult.textContent = `Converted Amount: ₹${convertedAmount.toFixed(2)}`;
+            const resultString = `Converted Amount: ₹${convertedAmount.toFixed(2)}`;
+            currencyResult.textContent = resultString;
+            if (window.historyManager) window.historyManager.add(expression, resultString);
         });
     }
 }        

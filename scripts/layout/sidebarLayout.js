@@ -6,8 +6,8 @@ export function sidebarLayout(menuItemObj) {
         el('ul', {}, [
             ...menuItemObj.map(item => el('li', { 
                 class: item.class || '', 
-                "data-nav-target": item.target,
-                "data-action": item.action,
+                ...(item.target? { "data-nav-target": item.target }: {}),
+                ...(item.action? { "data-action": item.action }: {}),
             }, [
                 el('a', { href: `#`, text: item.text })
             ]))

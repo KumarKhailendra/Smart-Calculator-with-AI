@@ -28,6 +28,7 @@ export function unitConverter() {
             const result = math.unit(value, fromUnit).to(toUnit);
             const resultString = result.format({ precision: 4 });
             converterResult.textContent = resultString
+            if (window.historyManager) window.historyManager.add(query, resultString);
         } catch (error) {
             converterResult.textContent = "Invalid units.";
         }

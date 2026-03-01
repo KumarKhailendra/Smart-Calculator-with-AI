@@ -78,6 +78,10 @@ export function aiSolver() {
     prompt += `\n\nQuery: ${query}`;
 
     try {
+        fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`)
+  .then(response => response.json())
+  .then(data => console.log(data.models))
+  .catch(error => console.error(error));
       const response = await fetch(apiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -91,6 +95,7 @@ export function aiSolver() {
       const answer = data.candidates[0].content.parts[0].text.trim();
       aiResult.textContent = answer;
       lastResult = answer;
+      if (window.historyManager) window.historyManager.add(query, answer);
       if (autoSpeak) speak(answer);
     } catch (error) {
       const errorMessage = `Error: ${error.message}`;
