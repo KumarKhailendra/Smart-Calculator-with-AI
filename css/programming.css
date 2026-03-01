@@ -1,0 +1,66 @@
+#programming-calculator {
+    padding: 20px;
+    height: 500px;
+    overflow-y: auto;
+}
+
+.programming-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.programming-tabs .tab-link {
+    padding: 10px 15px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+    color: var(--text-color);
+    transition: color 0.3s;
+    border-bottom: 2px solid transparent;
+}
+
+.programming-tabs .tab-link.active {
+    border-bottom: 2px solid var(--operator-bg);
+    font-weight: bold;
+}
+
+.programming-content {
+    display: none;
+}
+
+.programming-content.active {
+    display: block;
+}
+
+.converter-form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.converter-form-group label {
+    width: 50px;
+    font-weight: bold;
+    opacity: 0.8;
+}
+
+.converter-form-group select,
+.converter-form-group input {
+    flex-grow: 1;
+    padding: 10px;
+    font-size: 1.1rem;
+    font-family: 'Courier New', Courier, monospace;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--display-bg);
+    color: var(--text-color);
+}
+
+#bitwise-result {
+    font-size: 1.2rem;
+    text-align: center;
+    line-height: 1.6;
+    word-break: break-all;
+}

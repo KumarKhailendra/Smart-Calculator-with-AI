@@ -1,0 +1,249 @@
+#history-calculator {
+    padding: 20px;
+    height: 500px;
+    overflow-y: auto;
+}
+
+.history-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.history-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+#history-search {
+    flex-grow: 1;
+    min-width: 200px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    background-color: var(--display-bg);
+    color: var(--text-color);
+    border-radius: 5px;
+}
+
+.history-btn {
+    padding: 10px 15px;
+    border: 1px solid var(--border-color);
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+.history-btn:hover {
+    background-color: var(--button-hover-bg);
+}
+
+.history-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.history-item {
+    background-color: var(--display-bg);
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border-left: 4px solid var(--operator-bg);
+}
+
+.history-item-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.history-item-text {
+    flex-grow: 1;
+}
+
+.history-item-expression {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.history-item-result {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-top: 3px;
+}
+
+.history-item-time {
+    font-size: 0.8rem;
+    opacity: 0.6;
+}
+
+.history-item-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.history-item-btn {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    border: 1px solid var(--border-color);
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.history-item-btn:hover {
+    background-color: var(--button-hover-bg);
+}
+
+.history-item-tag {
+    display: inline-block;
+    background-color: var(--operator-bg);
+    color: var(--operator-text-color);
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    margin-top: 5px;
+}
+
+.history-item-tag-input {
+    padding: 3px 8px;
+    font-size: 0.8rem;
+    border: 1px solid var(--border-color);
+    background-color: var(--display-bg);
+    color: var(--text-color);
+    border-radius: 3px;
+}
+
+.history-panel {
+    width: 320px;
+    background-color: var(--sidebar-bg);
+    border-left: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    transition: width 0.3s ease;
+    flex-shrink: 0;
+}
+
+.history-panel.hidden {
+    width: 0;
+    overflow: hidden;
+    padding: 0;
+    border-left: none;
+}
+
+.history-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.history-header h3 {
+    margin-bottom: 15px;
+}
+
+#history-search {
+    width: 100%;
+    padding: 8px;
+    font-size: 0.9rem;
+    border: 1px solid var(--border-color);
+    background-color: var(--display-bg);
+    color: var(--text-color);
+    border-radius: 5px;
+}
+
+.history-export {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.history-export button {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.history-export button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+.history-list {
+    list-style: none;
+    padding: 10px;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.history-item {
+    background-color: var(--app-bg);
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.history-item .expression {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    word-wrap: break-word;
+}
+
+.history-item .result {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-top: 5px;
+    word-wrap: break-word;
+}
+
+.history-item-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.tag-input {
+    flex-grow: 1;
+    border: none;
+    border-bottom: 1px dashed var(--border-color);
+    background: transparent;
+    color: var(--text-color);
+    font-size: 0.8rem;
+    padding: 5px 0;
+}
+
+.tag-input:focus {
+    outline: none;
+    border-bottom-color: var(--operator-bg);
+}
+
+.history-actions button {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+.history-actions button:hover {
+    opacity: 1;
+}
