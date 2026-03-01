@@ -1,3 +1,4 @@
+import { aiSolver } from "./features/ai-solver.js";
 import { unitConverter } from "./features/converter.js";
 import { financialCalc } from "./features/financial.js";
 import { graphCanvas } from "./features/graph.js";
@@ -17,8 +18,9 @@ const metaData = {
         "../css/scientific.css",
         "../css/graphing.css",
         "../css/converter.css",
-        "../css/financial.css",
         "../css/programming.css",
+        "../css/financial.css",
+        "../css/ai-solver.css",
     ],
     scripts: [
         "https://cdn.jsdelivr.net/npm/chart.js",
@@ -37,6 +39,7 @@ window.addEventListener('DOMContentLoaded', () => {
     unitConverter()
     financialCalc()
     programmingCalc()
+    aiSolver()
 })
 
 // ------------------------------------ Start Root Layout ----------------------------------------

@@ -76,6 +76,8 @@ function renderSection(config) {
     if (config.button) 
         section.appendChild(el('button', config.button, [config.button.label]));
 
+    if (config.buttons) config.buttons.forEach(button => section.appendChild(el('button', button.attrs, [button.label])));
+
     if (config.resultBox)
         section.appendChild(el('div', config.resultBox, []));
 

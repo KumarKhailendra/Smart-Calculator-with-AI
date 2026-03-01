@@ -372,4 +372,48 @@ export const calculators = {
       },
     ],
   },
+  
+  aiSolver: {
+    id: "ai-solver-calculator",
+    type: "ai",
+    wrapper: {
+      tag: "div",
+      class: "ai-container",
+    },
+    resultBox: { id: "ai-result", defaultText: "Ask me anything..." },
+    contents: [
+      {
+        className: "ai-input-container",
+        fields: [
+          {
+            type: "select",
+            open: true,
+            id: "lang-select",
+            class: "ai-select",
+            options: [
+              { value: "en-US", label: "English (US)" },
+              { value: "en-GB", label: "English (UK)" },
+              { value: "hi-IN", label: "हिन्दी" },
+              { value: "es-ES", label: "Español" },
+              { value: "fr-FR", label: "Français" },
+              { value: "de-DE", label: "Deutsch" },
+              { value: "it-IT", label: "Italiano" },
+              { value: "ja-JP", label: "日本語" },
+            ],
+          },
+          {
+            type: "input",
+            open: true,
+            id: "ai-input",
+            inputType: "text",
+            placeholder: "e.g., solve 2x + 5 = 15",
+          },
+        ],
+        buttons: [
+          { label: "🎤", attrs: { id: "mic-btn", class: 'ai-btn', title: 'Voice Input' } },
+          { label: "🔊", attrs: { id: "speaker-btn", class: 'ai-btn', title: 'Toggle Auto-Speak' } },
+        ],
+      },
+    ],
+  },
 }

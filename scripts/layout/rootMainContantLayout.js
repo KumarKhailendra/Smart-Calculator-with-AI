@@ -11,6 +11,7 @@ export function rootMainContentLayout() {
     renderCalculator(mainContantElement, calculators.converter);
     renderCalculator(mainContantElement, calculators.financial);
     renderCalculator(mainContantElement, calculators.programming);
+    renderCalculator(mainContantElement, calculators.aiSolver);
 
     return mainContantElement;
 }
