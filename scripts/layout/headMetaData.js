@@ -22,7 +22,7 @@ export function setMetaData(metaData) {
     }
     keywordsElement.content = (metaData.keywords || []).join(', ');
 
-    let icon32 = document.head.querySelector('link[rel="icon"][sizes="32x32]');
+    let icon32 = document.head.querySelector('link[rel="icon"][sizes="32x32"]');
     if (!icon32 && metaData.icon32) {
         icon32 = document.createElement('link');
         icon32.rel = 'icon';
@@ -30,9 +30,11 @@ export function setMetaData(metaData) {
         icon32.sizes = '32x32';
         document.head.appendChild(icon32);
     }
-    icon32.href = metaData.icon32;
+    if (icon32 && metaData.icon32) {
+        icon32.href = metaData.icon32;
+    }
 
-    let icon16 = document.head.querySelector('link[rel="icon"][sizes="16x16]');
+    let icon16 = document.head.querySelector('link[rel="icon"][sizes="16x16"]');
     if (!icon16 && metaData.icon16) {
         icon16 = document.createElement('link');
         icon16.rel = 'icon';
@@ -40,7 +42,9 @@ export function setMetaData(metaData) {
         icon16.sizes = '16x16';
         document.head.appendChild(icon16);
     }
-    icon16.href = metaData.icon16;
+    if (icon16 && metaData.icon16) {
+        icon16.href = metaData.icon16;
+    }
 
     let manifestLink = document.head.querySelector('link[rel="manifest"]');
     if (!manifestLink || metaData.manifestLink) {
@@ -48,7 +52,9 @@ export function setMetaData(metaData) {
         manifestLink.rel = 'manifest';
         document.head.appendChild(manifestLink);
     }
-    manifestLink.href = metaData.manifestLink;
+    if (manifestLink && metaData.manifestLink) {
+        manifestLink.href = metaData.manifestLink;
+    }
 
     (metaData.stylessheets || []).forEach(href => {
         const linkElement = document.createElement('link');

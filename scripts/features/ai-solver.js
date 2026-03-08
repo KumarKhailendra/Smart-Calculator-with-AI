@@ -1,4 +1,17 @@
-import { aiConfig } from "./ai-config.js";
+const defaultAiConfig = {
+  apiKey: "",
+  model: "gemini-2.5-flash",
+  autoSpeak: true,
+};
+
+async function loadAiConfig() {
+  try {
+    const mod = await import("./ai-config.js");
+    return { ...defaultAiConfig, ...(mod.aiConfig || {}) };
+  } catch {
+    return defaultAiConfig;
+  }
+}
 
 export function aiSolver() {
   const aiInput = document.getElementById("ai-input");
@@ -11,7 +24,7 @@ export function aiSolver() {
 
   // --- Speech Synthesis (Text to Speech) ---
   const synth = window.speechSynthesis;
-  let autoSpeak = aiConfig.autoSpeak; // Auto-speak AI responses
+  let autoSpeak = defaultAiConfig.autoSpeak; // Auto-speak AI responses
 
   const speak = (text) => {
     if (synth.speaking) {
@@ -60,13 +73,24 @@ export function aiSolver() {
   }
 
   let lastResult = null;
-  const apiKey = aiConfig.apiKey;
-  const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${aiConfig.model}:generateContent?key=${apiKey}`;
+  let aiConfig = defaultAiConfig;
+  loadAiConfig().then((loadedConfig) => {
+    aiConfig = loadedConfig;
+    autoSpeak = aiConfig.autoSpeak;
+    speakerBtn.style.opacity = autoSpeak ? "1" : "0.5";
+  });
 
   const processQuery = async (query) => {
     query = query.trim();
     if (!query) return;
     aiResult.textContent = "Thinking...";
+    const apiKey = aiConfig.apiKey;
+    if (!apiKey) {
+      aiResult.textContent =
+        "AI key missing. Add scripts/features/ai-config.js with your Gemini API key.";
+      return;
+    }
+    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${aiConfig.model}:generateContent?key=${apiKey}`;
 
     let prompt =
       "You are a powerful calculator and math solver. Solve the following query concisely and return only the final answer without any explanation or preamble. If the query is a simple calculation, just return the number. For equations, provide the solution (e.g., x = 5). For conversions, give the converted value with units.";
